@@ -277,7 +277,7 @@ h5 {
 
 /* Style pour les conteneurs de semestres */
 .cycle-container {
-    margin-bottom: 30px; /* Espacement entre les semestres */
+    margin-bottom: 30px;
   }
   
   .cycle-title {
@@ -327,13 +327,13 @@ h5 {
   }
 
   .movie-container a:hover img{
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .8);
   }
   
   /* Ajustements pour les très petits écrans */
   @media (max-width: 1000px) {
     .movie {
-      width: 100%; /* Chaque film prend 100% de la largeur de la ligne */
+      width: 30%; /* Chaque film prend 100% de la largeur de la ligne */
     }
   }
   
