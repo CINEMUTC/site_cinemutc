@@ -72,10 +72,17 @@ nav ul {
     .active #icons:before {
         content: "\2715";
       }
+      .logocinemut{
+        width: 20%;
+        height: 20%;
+    }
+      nav{
+        padding: 10px;
+      }
       nav ul {
         position: fixed;
         left: -100%;
-        top: 5%;
+        top: 6%;
     flex-direction: column;
     background: rgb(255, 255, 255);
     width: 100%;
@@ -92,6 +99,24 @@ nav ul {
   }
   nav.active ul {
     left: 0;
+  }
+}
+
+@media (max-width: 555px) {
+  nav ul {
+    top: 5%;
+  }
+}
+
+@media (max-width: 425px) {
+  nav ul {
+    top: 4%;
+  }
+}
+
+@media (max-width: 280px) {
+  nav ul {
+    top: 2.5%;
   }
 }
 
