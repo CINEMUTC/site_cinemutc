@@ -9,24 +9,24 @@ window.addEventListener("scroll", () => {
   });
 
 
-  // Sélectionnez le conteneur parent des éléments à inverser (par exemple, le body)
+// Inversement des cycles du plus récent au plus vieux
 const container = document.querySelector('.cycles');
 
-// Sélectionnez tous les éléments avec la classe "cycle-container"
+
 const cycleContainers = document.querySelectorAll('.cycle-container');
 
-// Créez un tableau vide pour stocker les éléments dans l'ordre inversé
+
 const reversedCycleContainers = [];
 
-// Parcourez les éléments à partir du dernier et ajoutez-les au tableau inversé
+
 for (let i = cycleContainers.length - 1; i >= 0; i--) {
   reversedCycleContainers.push(cycleContainers[i]);
 }
 
-// Videz le conteneur
+
 container.innerHTML = '';
 
-// Ajoutez les éléments dans l'ordre inversé
+
 reversedCycleContainers.forEach(cycleContainer => {
   container.appendChild(cycleContainer);
 });
