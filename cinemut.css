@@ -312,9 +312,8 @@ h5 {
 }
 
 .cycles{
-position: fixed;
 width: 100%;
-top: 20%;
+margin-top: 10%;
 }
 
 .cycle-container {
