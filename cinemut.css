@@ -7,10 +7,12 @@
 }
 
 li {
-  list-style: none;
-  display: inline-block;
-  text-align: center;
-  width: 20%;
+  display: block;
+  float: left;
+  font-size: 1rem;
+  letter-spacing: .07692308em;
+  line-height: 17px;
+  margin-left: 15px;
 }
 
 nav a {
@@ -19,7 +21,7 @@ nav a {
   text-transform: uppercase;
 }
 nav a:hover {
-  color: rgb(60, 60, 60);
+  color: rgb(0, 0, 0);
 }
 
 /**** NAVBAR ****/
@@ -35,9 +37,8 @@ nav {
 
 nav ul {
   display: block;
-  justify-content: space-between;
-  width: 60%;
   text-align: right;
+  margin-right: 1%;
 }
 #icons {
     cursor: pointer;
@@ -58,8 +59,9 @@ nav ul {
     width: 12.5%;
     height: 12.5%;
 }
-
-
+.navitem {
+  display:block;
+}
 
 
 @media (max-width: 1000px) {
