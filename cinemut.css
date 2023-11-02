@@ -74,10 +74,17 @@ nav ul {
     .active #icons:before {
         content: "\2715";
       }
+      .logocinemut{
+        width: 20%;
+        height: 20%;
+    }
+      nav{
+        padding: 10px;
+      }
       nav ul {
         position: fixed;
         left: -100%;
-        top: 5%;
+        top: 6%;
     flex-direction: column;
     background: rgb(255, 255, 255);
     width: 100%;
@@ -94,6 +101,24 @@ nav ul {
   }
   nav.active ul {
     left: 0;
+  }
+}
+
+@media (max-width: 555px) {
+  nav ul {
+    top: 5%;
+  }
+}
+
+@media (max-width: 425px) {
+  nav ul {
+    top: 4%;
+  }
+}
+
+@media (max-width: 280px) {
+  nav ul {
+    top: 2.5%;
   }
 }
 
@@ -276,8 +301,6 @@ h5 {
     margin-top: 100px;
 }
 
-
-/* Style pour les conteneurs de semestres */
 .cycle-container {
     margin-bottom: 30px;
   }
@@ -289,7 +312,7 @@ h5 {
     text-transform: uppercase;
   }
   
-  /* Style pour les films */
+ 
   .movie-container {
     display: block;
     width: 100%;
@@ -299,10 +322,10 @@ h5 {
   
   .movie {
     display: inline-block;
-    width: 12%; /* Chaque film prend 15% de la largeur de la ligne */
+    width: 12%; 
     margin-bottom: 20px;
     margin-left: 1%;
-    margin-right: 1%; /* Ajoutez de la marge à droite (2% de la largeur de la ligne) */
+    margin-right: 1%; 
     box-sizing: border-box;
     text-align: center;
 }
@@ -332,10 +355,10 @@ h5 {
     box-shadow: 0 0 30px rgba(0, 0, 0, .8);
   }
   
-  /* Ajustements pour les très petits écrans */
+
   @media (max-width: 1000px) {
     .movie {
-      width: 30%; /* Chaque film prend 100% de la largeur de la ligne */
+      width: 30%; 
     }
   }
   
