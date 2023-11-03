@@ -178,6 +178,17 @@ nav ul {
     transition: opacity ease 250ms;
 }
 
+@media (max-width: 500px) {
+  .slider-nav a{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .slider-nav {
+    column-gap: 1.5rem;
+    bottom: 1rem;
+}
+}
+
 .slider-nav a:hover{
     opacity: 1;
 }
