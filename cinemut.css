@@ -178,7 +178,7 @@ nav ul {
     transition: opacity ease 250ms;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1000px) {
   .slider-nav a{
     width: 1.5rem;
     height: 1.5rem;
