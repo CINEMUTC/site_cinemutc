@@ -10,6 +10,7 @@
        <title>CINEM'UTC</title>
        
    </head> 
+
    <body>
     <nav id="nav" class="active">
         <div class="logocinemut">
@@ -37,12 +38,10 @@
         <div id="icons"></div>
       </nav>
 
-      <script src="./cinemut.js"></script>
-
       <section class="proposition-container">
       <div class="proposition">
         <form action="">
-            <h1>Propose ton film !</h1>
+            <h1>Il y a un film que tu veux (faire) découvrir ? Que tu l'aies déjà vu ou non, propose le !</h1>
             <div id="prop-film" class="prop-input-box">
                 <input type="text" placeholder="Titre du film (année de sortie)" required>
                 <div class="exemple"><p>Exemple: Parasite (2019)</p></div>
@@ -73,16 +72,20 @@
             </div>
             
             <div id="prop-raison" class="prop-input-box">
-                <input type="text" maxlength="500" placeholder="Pourquoi ce film? (facultatif)" required>
+                <input type="text" maxlength="500" placeholder="Pourquoi ce film? (facultatif)">
             </div>
 
-            <button type="submit" class="prop-button">Soumettre ma proposition</button>
+            <div id="results-container"></div>
+
+            <div class="prop-button">
+            <button type="submit">Soumettre ma proposition</button>
+            </div>
 
         </form>
       </div>
     </section>
 
-      
+    <script src="./cinemut.js"></script>
 
    </body>
 
