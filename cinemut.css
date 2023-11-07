@@ -6,6 +6,7 @@
     font-family: "Segoe UI";
 }
 
+
 li {
   display: block;
   float: left;
@@ -138,60 +139,72 @@ nav ul {
 
 
 .slider-wrapper {
-    position: relative;
-    max-width: 70rem;
-    margin: 0 auto;
+  position: relative;
+  max-width: 70rem;
+  margin: 0 auto;
 }
 
 .slider {
-    display: flex;
-    aspect-ratio: 16 / 9;
-    overflow-x: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
-    border-radius: 0.5rem;
+  display: flex;
+  aspect-ratio: 16 / 9;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+  border-radius: 0.5rem;
 }
 
-.slider img{
-    flex: 1 0 100%;
-    scroll-snap-align: start;
-    object-fit: cover;
+.slider img {
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
 }
 
 .slider-nav {
-    display: flex;
-    column-gap: 2rem;
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.slider-nav a{
-    width: 2rem;
-    height: 2rem;
-    border-radius: 100%;
-    background-color: #fff;
-    opacity: 25%;
-    transition: opacity ease 250ms;
+.slider-nav a {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  background-color: #fff;
+  opacity: 25%;
+  transition: opacity ease 250ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #000;
 }
 
 @media (max-width: 1000px) {
-  .slider-nav a{
-    width: 1.5rem;
-    height: 1.5rem;
+  .slider-nav a {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
   }
   .slider-nav {
-    column-gap: 1.5rem;
-    bottom: 1rem;
-}
+      top: auto;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      column-gap: 1.5rem;
+      justify-content: center;
+  }
 }
 
-.slider-nav a:hover{
-    opacity: 1;
+.slider-nav a:hover {
+  opacity: 1;
 }
+
 
 /************************* ARCHIVE *****************************/
 #search-bar{
@@ -328,6 +341,7 @@ h5 {
 .cycles{
 width: 100%;
 margin-top: 10%;
+margin-bottom: 100px; 
 }
 
 .cycle-container {
@@ -336,7 +350,7 @@ margin-top: 10%;
   
   .cycle-title {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: normal;
     margin-bottom: 5px;
     text-transform: uppercase;
   }
@@ -359,9 +373,17 @@ margin-top: 10%;
     text-align: center;
 }
 
-.movie-container a h2, .movie-container a p {
+.movie-container a h2 {
     color: rgb(0, 0, 0);
     text-decoration: none;
+    font-weight: normal;
+  }
+
+  .movie-container a p {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: normal;
+    opacity: 0.5;
   }
 
   .movie-container a:hover h2{
@@ -452,5 +474,39 @@ margin-top: 10%;
   width: 30%;
   height: 50px;
 }
+
+footer{
+  display: inline-block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  bottom: 0;
+  padding: 0.5rem;
+  border-top: 0.5mm ridge rgb(0, 0, 0);
+  opacity: 0.5;
+}
+
+.sticky-footer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 10px;
+  padding: 0.5rem;
+  border-top: 0.5mm ridge rgb(0, 0, 0);
+  opacity: 0.5;
+}
+
+.apropos{
+  margin-top: 150px;
+  padding: 2%;
+}
+
 
 

@@ -25,10 +25,10 @@
                 <a href="./cinemut.archive.html">Archive</a>
             </li>
             <li>
-                <a href="./cinemut.proposition.html">Propose ton film !</a>  
+                <a href="./cinemut.proposition.html">Propose ton film</a>  
             </li>
             <li>
-                <a href="#">À propos</a>
+                <a href="./cinemut.apropos.html">À propos</a>
             </li>
             <li class ="connexion-nav-item">
                 <a href="./cinemut.connexion.html">Connexion</a>  
@@ -100,20 +100,10 @@ function rechercherFilms() {
           titre.textContent = `${film.title} (${film.release_date.slice(0, 4)})`;
           titre.style.textAlign = 'center';
 
-        const realisateur = document.createElement('div');
-            realisateur.textContent = `Réalisateur: ${film.director}`;
-            realisateur.style.textAlign = 'center';
-
-        const duree = document.createElement('div');
-            duree.textContent = `Durée: ${film.runtime} minutes`;
-            duree.style.textAlign = 'center';
-
 
           imageContainer.appendChild(image);
           divFilm.appendChild(imageContainer);
           divFilm.appendChild(titre);
-          divFilm.appendChild(realisateur);
-          divFilm.appendChild(duree);
 
 
           divFilm.addEventListener('click', () => {
@@ -141,9 +131,13 @@ function rechercherFilms() {
 function selectionnerFilm(film) {
   alert(`Tu as sélectionné le film : ${film.title}`);
 }
+</script>
 
-
-    </script>
+<footer class="footer">
+    <div class="copyright">
+    <small>Copyright © 2023 CINEMUT. Tous droits réservés. <br>Fait par les GOATS Abdulqudus OGUNLEYE et Walid CAVELIUS</small>
+    </div>
+   </footer>
 
 </body>
 </html>

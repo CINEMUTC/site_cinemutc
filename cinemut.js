@@ -9,6 +9,52 @@ window.addEventListener("scroll", () => {
   });
 
 
+
+  //Slider de l'index
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    
+    function scrollNext() {
+        slider.scrollBy({
+            left: slider.offsetWidth,
+            behavior: 'smooth'
+        });
+
+        if (slider.scrollLeft + slider.offsetWidth === slider.scrollWidth) {
+            slider.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    function startAutoScroll() {
+        setInterval(scrollNext, 5000); // Défilement toutes les 5 secondes
+    }
+
+    prevButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        slider.scrollBy({
+            left: -slider.offsetWidth,
+            behavior: 'smooth'
+        });
+
+        if (slider.scrollLeft === 0) {
+            slider.scrollTo({
+                left: slider.scrollWidth,
+                behavior: 'smooth'
+            });
+        }
+    });
+
+    nextButton.addEventListener('click', scrollNext);
+
+    startAutoScroll();
+});
+
+
 // Inversement des cycles du plus récent au plus vieux
 const container = document.querySelector('.cycles');
 
@@ -264,6 +310,22 @@ function rechercherFilms() {
 function selectionnerFilm(film) {
   alert(`Vous avez sélectionné le film : ${film.title}`);
 }
+
+//FOOTER//
+document.addEventListener('DOMContentLoaded', function() {
+  const footer = document.querySelector('.sticky-footer');
+  const body = document.querySelector('body');
+
+  window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.scrollY >= body.offsetHeight) {
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
+  });
+});
+
+
 
 
 
