@@ -33,8 +33,6 @@ reversedCycleContainers.forEach(cycleContainer => {
 
 
 // Récolte des données de l'API et décla des constantes pour la liste de films
-const apiKey = '8395f99ea1dff01cb6d776b1a8ed8565'; 
-const apiUrl = 'https://api.themoviedb.org/3';
 const movieIds = [ 
   36095, 1991, 872, 63, 1567, 18533,
   1990, 483, 843, 694, 10016, 10513,
@@ -129,7 +127,7 @@ function ajouterFilmsAuCycle(cycle, titreCycle) {
     const movieId = movieIds[index];
     const clubReleaseDate = datesDiffusionClub[index];
 
-    fetch(`${apiUrl}/movie/${movieId}?api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=8395f99ea1dff01cb6d776b1a8ed8565`)
       .then(response => response.json())
       .then(data => {
         const movieTitle = data.title;
@@ -205,6 +203,67 @@ ajouterFilmsAuCycle(cycle39, 'cycle39');
 ajouterFilmsAuCycle(cycle40, 'cycle40');
 ajouterFilmsAuCycle(cycle41, 'cycle41');
 
+
+const imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
+
+function rechercherFilms() {
+  const nomDuFilm = document.getElementById('nomDuFilm').value;
+  const anneeDeSortie = document.getElementById('anneeDeSortie').value;
+
+  if (nomDuFilm.trim() === '') {
+    alert('Veuillez entrer un nom de film.');
+    return;
+  }
+
+  let url = `https://api.themoviedb.org/3/search/movie?api_key=8395f99ea1dff01cb6d776b1a8ed8565&query=${encodeURIComponent(nomDuFilm)}`;
+
+  if (anneeDeSortie.trim() !== '') {
+    url += `&year=${anneeDeSortie}`;
+  }
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const films = data.results;
+      const listeDesFilms = document.getElementById('listeDesFilms');
+
+      while (listeDesFilms.firstChild) {
+        listeDesFilms.removeChild(listeDesFilms.firstChild);
+      }
+
+      if (films.length > 0) {
+        films.forEach(film => {
+          const listItem = document.createElement('li');
+
+          const image = document.createElement('img');
+          image.src = `${imageBaseUrl}${film.poster_path}`;
+          image.alt = `Affiche de ${film.title}`;
+          image.classList.add('affiche');
+
+          const texte = document.createElement('span');
+          texte.textContent = `Titre: ${film.title}, Date de sortie: ${film.release_date}`;
+
+          listItem.appendChild(image);
+          listItem.appendChild(texte);
+
+          listItem.addEventListener('click', () => {
+            selectionnerFilm(film);
+          });
+
+          listeDesFilms.appendChild(listItem);
+        });
+      } else {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'Aucun film trouvé.';
+        listeDesFilms.appendChild(listItem);
+      }
+    })
+    .catch(error => console.error('Erreur lors de la recherche de films:', error));
+}
+
+function selectionnerFilm(film) {
+  alert(`Vous avez sélectionné le film : ${film.title}`);
+}
 
 
 

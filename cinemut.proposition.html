@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-   <head>
-       <meta charset="UTF-8">
-       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-       <meta name="viewport" content="width=device=width, initial-scale=1.0">
-       <link rel="stylesheet" href="cinemut.css">
-       <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-       <title>CINEM'UTC</title>
-       
-   </head> 
 
-   <body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device=width, initial-scale=1.0">
+        <link rel="stylesheet" href="cinemut.css">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <title>CINEM'UTC</title>
+    </head> 
+
+<body>
     <nav id="nav" class="active">
         <div class="logocinemut">
             <a href="./cinemut.index.html">
                 <img src="img/logo_cinemutc.png" alt="Logo CINEM'UTC" style="width: 100%; height: 100%;">
             </a>
-        </div>        
-        <ul>
+        </div> 
+        <ul> 
             <li>
                 <a href="./cinemut.index.html">Programmation</a>
             </li>
@@ -31,62 +30,120 @@
             <li>
                 <a href="#">À propos</a>
             </li>
-            <li>
-                <a href="./cinemut.connexion.html">Connexion</a>
+            <li class ="connexion-nav-item">
+                <a href="./cinemut.connexion.html">Connexion</a>  
             </li>
         </ul>
         <div id="icons"></div>
       </nav>
+    
 
-      <section class="proposition-container">
-      <div class="proposition">
-        <form action="">
-            <h1>Il y a un film que tu veux (faire) découvrir ? Que tu l'aies déjà vu ou non, propose le !</h1>
-            <div id="prop-film" class="prop-input-box">
-                <input type="text" placeholder="Titre du film (année de sortie)" required>
-                <div class="exemple"><p>Exemple: Parasite (2019)</p></div>
-            </div>
+    <div class="movie-search">
+        <label for="nomDuFilm">Nom du Film:</label>
+        <input type="text" id="nomDuFilm">
+        
+        <label for="anneeDeSortie">Année de Sortie:</label>
+        <input type="text" id="anneeDeSortie">
+      
+        <button onclick="rechercherFilms()">Rechercher</button>
 
-            <div class="prop-genres">
-                <p class="prop-checkbox">Genre(s) du film</p>
-                <div class="genre-group">
-                    <div class="genre-item"><label><input type="checkbox">Comédie</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Drame</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Comédie dramatique</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Thriller</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Action / Aventure</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Horreur</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Science-fiction</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Fantastique</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Animation</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Musical</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Documentaire</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Guerre</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Western</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Biopic</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Comédie romantique</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Historique</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Retransmission</label></div>
-                    <div class="genre-item"><label><input type="checkbox">Court métrage</label></div>
-                </div>
-            </div>
-            
-            <div id="prop-raison" class="prop-input-box">
-                <input type="text" maxlength="500" placeholder="Pourquoi ce film? (facultatif)">
-            </div>
+        <label>Pourquoi ce film ?</label>
+        <input type="text" id="prop-raison">
 
-            <div id="results-container"></div>
+        <div id="listeDesFilms" class="liste-films"></div>
+    </div>
 
-            <div class="prop-button">
-            <button type="submit">Soumettre ma proposition</button>
-            </div>
+    <script>
+        const imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
+let listeDejaDeroulee = false; 
 
-        </form>
-      </div>
-    </section>
+function rechercherFilms() {
+  const nomDuFilm = document.getElementById('nomDuFilm').value;
+  const anneeDeSortie = document.getElementById('anneeDeSortie').value;
+  const listeDesFilms = document.getElementById('listeDesFilms');
 
-    <script src="./cinemut.js"></script>
+  if (nomDuFilm.trim() === '') {
+    alert('Veuillez entrer un nom de film.');
+    return;
+  }
 
-   </body>
+  let url = `https://api.themoviedb.org/3/search/movie?api_key=8395f99ea1dff01cb6d776b1a8ed8565&query=${encodeURIComponent(nomDuFilm)}`;
 
+  if (anneeDeSortie.trim() !== '') {
+    url += `&year=${anneeDeSortie}`;
+  }
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const films = data.results;
+
+      while (listeDesFilms.firstChild) {
+        listeDesFilms.removeChild(listeDesFilms.firstChild);
+      }
+
+      if (films.length > 0) {
+        films.forEach(film => {
+          const divFilm = document.createElement('div');
+          divFilm.classList.add('film');
+
+          const imageContainer = document.createElement('div');
+          imageContainer.classList.add('image-container');
+
+          const image = document.createElement('img');
+          image.src = `${imageBaseUrl}${film.poster_path}`;
+          image.alt = `Affiche de ${film.title}`;
+          image.classList.add('affiche');
+          image.style.width = '75px'; 
+
+          const titre = document.createElement('div');
+          titre.textContent = `${film.title} (${film.release_date.slice(0, 4)})`;
+          titre.style.textAlign = 'center';
+
+        const realisateur = document.createElement('div');
+            realisateur.textContent = `Réalisateur: ${film.director}`;
+            realisateur.style.textAlign = 'center';
+
+        const duree = document.createElement('div');
+            duree.textContent = `Durée: ${film.runtime} minutes`;
+            duree.style.textAlign = 'center';
+
+
+          imageContainer.appendChild(image);
+          divFilm.appendChild(imageContainer);
+          divFilm.appendChild(titre);
+          divFilm.appendChild(realisateur);
+          divFilm.appendChild(duree);
+
+
+          divFilm.addEventListener('click', () => {
+            selectionnerFilm(film);
+          });
+
+          listeDesFilms.appendChild(divFilm);
+        });
+
+        if (!listeDejaDeroulee) {
+          listeDesFilms.style.maxHeight = `${listeDesFilms.scrollHeight}px`;
+          listeDejaDeroulee = true;
+        } else {
+          listeDesFilms.style.maxHeight = '500px'; 
+        }
+      } else {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'Aucun film trouvé.';
+        listeDesFilms.appendChild(listItem);
+      }
+    })
+    .catch(error => console.error('Rawe ca bug', error));
+}
+
+function selectionnerFilm(film) {
+  alert(`Tu as sélectionné le film : ${film.title}`);
+}
+
+
+    </script>
+
+</body>
 </html>
